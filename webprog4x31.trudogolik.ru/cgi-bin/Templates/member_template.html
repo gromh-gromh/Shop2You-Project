@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="windows-1251">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <title>Участники группы</title>
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <div class="title">
+      <h1>Участники группы</h1>
+    </div>
+  </div>
+</header>
+
+
+<main>
+  <div class="container">
+    <table class="table">
+      <tr class="title_table_row">
+        <th class="title_table_data">ID</th>
+        <th class="title_table_data">Имя</th>
+        <th class="title_table_data">Фамилия</th>
+        <th class="title_table_data">Тэг</th>
+        <th class="title_table_data">Средний балл</th>
+        <th></th>
+        <th></th>
+      </tr>
+
+      <TMPL_LOOP NAME=TABLE_ROWS>
+        <tr class="table_row">
+ 
+          <td class="table_data">
+            <TMPL_VAR NAME=ID>
+          </td>
+  
+          <td class="table_data">
+              <TMPL_VAR NAME=FIRST_NAME>
+          </td>
+
+          <td class="table_data">
+              <TMPL_VAR NAME=LAST_NAME>
+          </td>
+
+          <td class="table_data">
+            <TMPL_VAR NAME=TAG>
+          </td>
+
+          <td class="table_data">
+            <TMPL_VAR NAME=AVERAGE_GRADE>
+          </td>
+
+          <td class="table_button">
+            <a class="button" href="http://webprog4x31.trudogolik.ru/cgi-bin/egorov_dsp.pl?class=Frame::EgorovGrade&event=show_list&member_id=<TMPL_VAR NAME=ID>&group_id=<TMPL_VAR NAME=GROUP_ID>">Оценки</a>
+          </td>
+
+          <td class="table_button">
+            <a class="button button_red" href="http://webprog4x31.trudogolik.ru/cgi-bin/egorov_dsp.pl?class=Frame::EgorovMember&event=remove&member_id=<TMPL_VAR NAME=ID>&group_id=<TMPL_VAR NAME=GROUP_ID>">Удалить</a>
+          </td>
+
+        </tr>
+      </TMPL_LOOP>
+    </table>
+
+    <div class="form">
+      <form action="http://webprog4x31.trudogolik.ru/cgi-bin/egorov_dsp.pl" method="post">
+        <div class="form_title">
+          <h2>Добавить участника</h2>
+        </div>
+        <input type="hidden" name="class" value="Frame::EgorovMember">
+        <input type="hidden" name="event" value="add">
+        <input type="hidden" name="group_id" value="<TMPL_VAR NAME=GROUP_ID>">
+        <input class="text_input" name="first_name" type="text" placeholder="Имя" required>
+        <input class="text_input" name="last_name" type="text" placeholder="Фамилия" required>
+        <input class="text_input" name="tag" type="text" placeholder="Тэг" required>
+        <br>
+        <input class="submit_button" type="submit" value="Добавить участника" required>
+      </form>
+    </div>
+
+    <div class="button home_button">
+      <a href="http://webprog4x31.trudogolik.ru/cgi-bin/egorov_dsp.pl?class=Frame::EgorovGroup&event=show_list">К списку групп</a>
+    </div>
+  </div>
+</main>  
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="windows-1251">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <title>Группы</title>
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <div class="title">
+      <h1>Учебные группы</h1>
+    </div>
+  </div>
+</header>
+
+
+<main>
+  <div class="container">
+    <table class="table">
+      <tr class="title_table_row">
+        <th class="title_table_data">ID</th>
+        <th class="title_table_data">Название</th>
+        <th class="title_table_data">Дедлайн</th>
+        <th class="title_table_data">Описание</th>
+        <th></th>
+      </tr>
+
+      <TMPL_LOOP NAME="TABLE_ROWS">
+        <tr class="table_row">
+ 
+          <td class="table_data">
+            <TMPL_VAR NAME="ID">
+          </td>
+  
+          <td class="table_data">
+              <TMPL_VAR NAME="TITLE">
+          </td>
+
+          <td class="table_data">
+              <TMPL_VAR NAME="DEADLINE">
+          </td>
+
+          <td class="table_data">
+            <TMPL_VAR NAME="DESCRIPTION">
+          </td>
+
+          <td class="table_button">
+            <a class="button button_red" href="http://webprog4x31.trudogolik.ru/cgi-bin/egorov_dsp.pl?class=Frame::EgorovHomework&event=remove&homework_id=<TMPL_VAR NAME=ID>">Удалить</a>
+          </td>
+
+        </tr>
+      </TMPL_LOOP>
+    </table>
+
+    <div class="form">
+      <form action="http://webprog4x31.trudogolik.ru/cgi-bin/egorov_dsp.pl" method="post">
+        <div class="form_title">
+          <h2>Добавить домашнее задание</h2>
+        </div>
+        <input type="hidden" name="class" value="Frame::EgorovHomework">
+        <input type="hidden" name="event" value="add">
+        <input class="text_input" name="title" type="text" placeholder="Название" required>
+        <input class="text_input" name="deadline" type="text" placeholder="Дедлайн" required>
+        <input class="text_input" name="description" type="text" placeholder="Описание" required>
+        <br>
+        <input class="submit_button" type="submit" value="Добавить домашнее задание" required>
+      </form>
+    </div>
+
+    <div class="button home_button">
+      <a href="http://webprog4x31.trudogolik.ru/cgi-bin/egorov_dsp.pl?class=Frame::EgorovGroup&event=show_list">К списку групп</a>
+    </div>
+  </div>
+</main>  
+
+</body>
+</html>

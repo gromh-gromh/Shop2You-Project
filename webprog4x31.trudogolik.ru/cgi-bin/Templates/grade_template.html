@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="windows-1251">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <title>Оценки участника</title>
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <div class="title">
+      <h1>Оценки участника</h1>
+    </div>
+  </div>
+</header>
+
+
+<main>
+  <div class="container">
+    <table class="table">
+      <tr class="title_table_row">
+        <th class="title_table_data">ID</th>
+        <th class="title_table_data">ID задания</th>
+        <th class="title_table_data">Дата получения</th>
+        <th class="title_table_data">Оценка</th>
+      </tr>
+
+      <TMPL_LOOP NAME=TABLE_ROWS>
+        <tr class="table_row">
+ 
+          <td class="table_data">
+            <TMPL_VAR NAME=ID>
+          </td>
+  
+          <td class="table_data">
+              <TMPL_VAR NAME=HOMEWORK_ID>
+          </td>
+
+          <td class="table_data">
+              <TMPL_VAR NAME=DATE>
+          </td>
+
+          <td class="table_data">
+            <TMPL_VAR NAME=GRADE>
+          </td>
+
+        </tr>
+      </TMPL_LOOP>
+    </table>
+
+    <div class="form">
+      <form action="http://webprog4x31.trudogolik.ru/cgi-bin/egorov_dsp.pl" method="post">
+        <div class="form_title">
+          <h2>Изменить оценку</h2>
+        </div>
+        <input type="hidden" name="class" value="Frame::EgorovGrade">
+        <input type="hidden" name="event" value="change">
+        <input type="hidden" name="group_id" value="<TMPL_VAR NAME = GROUP_ID>">
+        <input type="hidden" name="member_id" value="<TMPL_VAR NAME = MEMBER_ID>">
+        <input class="text_input" name="grade_id" type="text" placeholder="ID оценки" required>
+        <input class="text_input" name="grade" type="text" placeholder="Оценка" required>
+        <br>
+        <input class="submit_button" type="submit" value="Изменить оценку" required>
+      </form>
+    </div>
+
+    <div class="button home_button">
+      <a href="http://webprog4x31.trudogolik.ru/cgi-bin/egorov_dsp.pl?class=Frame::EgorovMember&event=show_list&group_id=<TMPL_VAR NAME=GROUP_ID>">К списку участников группы</a>
+    </div>
+  </div>
+</main>  
+
+</body>
+</html>
